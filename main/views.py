@@ -28,7 +28,7 @@ def draw(request):
 
         chosen = []
 
-        numbers = Number.objects.get(title = title)
+        numbers = Number.objects.filter(title = title)[0]
         num = numbers.enteries
 
         num_list = [x for x in num.split(',')]
@@ -40,15 +40,15 @@ def draw(request):
                 chosen.append(choice)
                 num_list.remove(choice)
                 
-                context = {
-                    choice : choice
-                    }
                 print('\n\n', choice)
                 print('\n\n', chosen)
                 time.sleep(3)
 
-            
-                return(context)
-            return render(request,context)
+            context = {
+                "choice" : chosen
+                }
+        
+            return render(request, 'numbers.html', context)
+            # return render(request,'numbers.html',context)
 
     return render(request, 'numbers.html')
