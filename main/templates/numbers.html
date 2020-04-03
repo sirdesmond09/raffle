@@ -5,14 +5,14 @@
     {% csrf_token %}   
 
     <div class="form-group">
-        <label for="id_entery" class="col-md-6 control-label">List to draw from </label>
+        <label for="id_entery" class="col-md-3 control-label">List to draw from </label>
         <div class="col-md-6">
             <input type="text" name="entery" id="id_entery" class="form-control">
         </div>
     </div> 
 
     <div class="form-group">
-        <label for="id_draw" class="col-md-6 control-label">Amount to draw</label>
+        <label for="id_draw" class="col-md-3 control-label">Amount to draw</label>
         <div class="col-md-6">
             <input type="number" name="draw" id="id_draw" placeholder="How many do you want to draw?" class="form-control">
         </div>
@@ -27,12 +27,20 @@
 </form>
 
 
-<ul>
-{% if choice %}
-    <p>The chosen Number is <br> {{ choice }}</p>
-{% else %}
-    <p>No number drawn</p>
-{% endif %}
-</ul>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sn-12 maincontent" >
+        {% if choice %}
+            <p class = "lead">The chosen Numbers are <br> 
+            {% for digit in choice %}
+            {{ digit }}
+            {% endfor %} </p>
+        {% else %}
+            <p class = "lead">No numbers drawn</p>
+        {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock content %}
+
+

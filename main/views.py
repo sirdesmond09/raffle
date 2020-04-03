@@ -22,7 +22,7 @@ def draw(request):
     if request.method == "POST":
         draws    = request.POST.get('draw')
         title    = request.POST.get('entery')
-        print(draws)
+        # print(draws)
 
 
 
@@ -32,23 +32,18 @@ def draw(request):
         num = numbers.enteries
 
         num_list = [x for x in num.split(',')]
-        print(num_list)
+        # print(num_list)
 
         if int(draws) < len(num_list):
             for i in range(int(draws)):
                 choice = random.choice(num_list)
                 chosen.append(choice)
                 num_list.remove(choice)
-                
-                print('\n\n', choice)
-                print('\n\n', chosen)
-                time.sleep(3)
 
             context = {
                 "choice" : chosen
                 }
         
             return render(request, 'numbers.html', context)
-            # return render(request,'numbers.html',context)
 
     return render(request, 'numbers.html')
