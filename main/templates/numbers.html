@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="." method="POST" class="form-horizontal">
+    {% csrf_token %}   
+
+    <div class="form-group">
+        <label for="id_entery" class="col-md-6 control-label">List to draw from </label>
+        <div class="col-md-6">
+            <input type="text" name="entery" id="id_entery" class="form-control">
+        </div>
+    </div> 
+
+    <div class="form-group">
+        <label for="id_draw" class="col-md-6 control-label">Amount to draw</label>
+        <div class="col-md-6">
+            <input type="number" name="draw" id="id_draw" placeholder="How many do you want to draw?" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Submit</button>
+        </div>
+    </div>
+
+</form>
+
+
+<ul>
+{% if choice %}
+    <p>The chosen Number is <br> {{choice }}</p>
+{% else %}
+    <p>No number drawn</p>
+{% endif %}
+</ul>
+
+{% endblock content %}
