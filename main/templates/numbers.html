@@ -1,6 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
+
+<div class="row" style = "margin:5%">
+    <div class="col-md-9">
+        <div class="tab-content">
+            {% for item in lists %}
+            <div id="{{ item.id }}" class="tab-pane fade
+            {% if forloop.counter0 == 0 %}
+            in active
+            {% endif %}">
+            <h3>{{ item.title }}</h3>
+            <p class= 'lead'>{{ item.enteries }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            {% for item in lists %}
+            <li 
+            {% if forloop.counter0 == 0 %}
+            class="active"
+            {% endif %}
+            >
+                <a data-toggle="pill" href="#{{item.id}}">{{item.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+
+
 <form action="." method="POST" class="form-horizontal">
     {% csrf_token %}   
 
@@ -27,7 +63,7 @@
 </form>
 
 
-<div class="container-fluid">
+<div class="container-fluid", style = "margin:5%" >
     <div class="row">
         <div class="col-md-8 col-md-offset-2 col-sn-12 maincontent" >
         {% if choice %}

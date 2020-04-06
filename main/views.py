@@ -18,11 +18,17 @@ def create(request):
 
 
 def draw(request):
+    lists = Number.objects.all()
+
+    content = {
+        "lists" : lists
+    }
 
     if request.method == "POST":
         draws    = request.POST.get('draw')
         title    = request.POST.get('entery')
         # print(draws)
+        lists = Number.objects.all()
 
 
 
@@ -41,9 +47,10 @@ def draw(request):
                 num_list.remove(choice)
 
             context = {
-                "choice" : chosen
+                "choice" : chosen,
+                 "lists" : lists
                 }
         
             return render(request, 'numbers.html', context)
 
-    return render(request, 'numbers.html')
+    return render(request, 'numbers.html', context = content)
